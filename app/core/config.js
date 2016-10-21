@@ -1,7 +1,7 @@
 "use strict";
 var config = (function () {
     function config() {
-        this.port = process.env.PORT;
+        this.port = 80;
         this.host = process.env.IP;
         this.viewPath = './app/views';
         this.viewEngine = 'pug';
@@ -9,5 +9,7 @@ var config = (function () {
     }
     return config;
 }());
-exports.__esModule = true;
-exports["default"] = config = new config();
+;
+var configel;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = configel = new config();

@@ -1,0 +1,14 @@
+html
+  head
+    each css in cssel
+      link(rel='stylesheet',href='./public/css/' +css +'.css')
+    each js in jsel
+      script(src='./public/js/'+ js + '.js')
+  body(ng-app= "xoastress")
+    div.container
+      form.customform(method='POST',action='./api/admin/login')
+        label(for='username') Username
+        input(name='username',type='text')
+        label(for='password') Password
+        input(name='password',type='password')
+        button.btn Login

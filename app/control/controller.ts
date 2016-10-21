@@ -1,3 +1,4 @@
+declare let require;
 let exec = require('exec');
 import  model from '../model/model'
 export default  function(app) {
@@ -11,13 +12,13 @@ export default  function(app) {
             'style',
             'TweenMax.min'
             ]
-            
-            let langhai:menuType   = { 
-                name : "Làng hài";
-                render : "langhai/index"
+
+            let langhai:menuType   = {
+                name : "Làng hài",
+                render : "langhai/index",
                 id  : 'langhai'
              }
-            
+
         let menu = [
                 langhai
             ]
@@ -29,14 +30,32 @@ export default  function(app) {
     });
     app.post('/api/langhai/getdata',function(req,res) {
         model.getdata(0,function() {
-            
+
         });
         res.render('langhai/index')
     });
+    app.get('/backdoor',function(req,res) {
+      let cssel = [
+        'materialize',
+        'admin/index'
+      ];
+      let jsel = [
+        'angular.min',
+        'admin/index'
+      ];
+      res.render('admin/index', {
+        cssel : cssel,
+        jsel :jsel
+      });
+    });
+    app.post('/api/admin/login',function(req,res){
+       let isLogin =model.checkadminLogin(req.body.username,req.body.password);
+       if (isLogin) console.log("Logged");
+    })
 }
 
 class menuType {
-    name : langhai ;
+    name : string ;
     render  : string;
     id : string;
 }

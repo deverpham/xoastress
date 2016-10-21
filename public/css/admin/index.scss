@@ -1,0 +1,12 @@
+body {
+  background :white;
+  & .customform {
+    width: 50%;
+    margin:0 auto;
+    margin-top :20%;
+    & label {
+      color: black;
+      font-size:1.5rem;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+declare let require;
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser')
@@ -11,5 +12,5 @@ app.use(bodyParser.json())
 app.use(config.publicFolder,express.static('public'));
 route(app)
 app.listen(config.port,config.host,function() {
-   console.log('server Started') 
+   console.log('server Started')
 });
