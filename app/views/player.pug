@@ -1,0 +1,14 @@
+html
+    head
+        meta(charset="utf-8")
+        each item in cssel
+            link(rel='stylesheet',href='./public/css/'+item+'.css')
+        each item in jsel
+            script(src='./public/js/'+item+'.js')
+        title Guitar Việt - Player
+    body
+        div
+            each item in jsondata.song.chords
+                each it in item
+                    p
+                        span= it

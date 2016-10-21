@@ -1,0 +1,17 @@
+html
+    head
+        each css in cssel
+            link(rel='stylesheet',href='./public/css/' + css + '.css')
+        each js in jsel
+            script(src='./public/js/' + js + '.js')
+    body
+        div.col.row
+            div.col.s1#menu
+                ul
+                each menu in menulist
+                    li  
+                        a(href='#', hhref= menu.render,id= menu.id)= menu.name
+            div.col.s12#content
+                
+            
+            
