@@ -29,9 +29,6 @@ export default  function(app) {
        }) ;
     });
     app.post('/api/langhai/getdata',function(req,res) {
-        model.getdata(0,function() {
-
-        });
         res.render('langhai/index')
     });
     app.get('/backdoor',function(req,res) {
@@ -50,7 +47,7 @@ export default  function(app) {
     });
     app.post('/api/admin/login',function(req,res){
        let isLogin =model.checkadminLogin(req.body.username,req.body.password);
-       if (isLogin) console.log("Logged");
+       if (isLogin) console.log("Logged");  
     })
 }
 

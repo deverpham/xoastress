@@ -27,8 +27,6 @@ function default_1(app) {
         });
     });
     app.post('/api/langhai/getdata', function (req, res) {
-        model_1.default.getdata(0, function () {
-        });
         res.render('langhai/index');
     });
     app.get('/backdoor', function (req, res) {
