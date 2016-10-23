@@ -10,7 +10,7 @@ var database = (function () {
     database.prototype.connect = function (callback) {
         this.MongoClient.connect(this.url, function (err, db) {
             assert.equal(null, err);
-            callback(db);
+            callback(db, this);
             db.close();
         });
     };
@@ -19,20 +19,12 @@ var database = (function () {
             console.log('connected');
         });
     };
-    database.prototype.findItem = function (table, jsondata) {
-        var check = false;
-        ;
+    database.prototype.findItem = function (table, jsondata, callback) {
         this.connect(function (db) {
-            var thiss = this;
             var collection = db.collection(table);
             collection.find(jsondata).count(function (err, item) {
                 assert.equal(null, err);
-                if (item > 0) {
-                    thiss.findItem = true;
-                }
-                else {
-                    thiss.findItem = false;
-                }
+                callback(item);
             });
         });
     };

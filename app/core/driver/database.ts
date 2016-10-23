@@ -4,7 +4,7 @@ class database {
   MongoClient =require('mongodb').MongoClient;
   ObjectId  =require('mongodb').ObjectID;
   url: string;
-  middle:boolean;
+  middle:number;
   database : string;
   constructor(url,database) {
     this.url = url;
@@ -15,7 +15,7 @@ class database {
     this.MongoClient.connect(this.url,function(err,db) {
       assert.equal(null,err);
       //connected
-      callback(db);
+      callback(db,this);
       db.close();
     })
   }
@@ -24,25 +24,15 @@ class database {
       console.log('connected');
     })
   }
-  findItem(table:string,jsondata:Object) {
-    let check:boolean=false;;
+  findItem(table:string,jsondata:Object,callback) {
     this.connect(function(db) {
-       let thiss=this;
         let collection = db.collection(table);
         collection.find(jsondata).count(function(err,item) {
           assert.equal(null,err);
-          //
-
-          if (item > 0)
-          {
-            thiss.findItem=true;
-
-          }
-          else {
-          thiss.findItem=false;}
-
+          callback(item);
         });
     });
+
   }
 }
 let dbname:string = "xoastress";

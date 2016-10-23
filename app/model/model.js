@@ -4,16 +4,12 @@ var model = (function () {
     function model() {
         this.validator = require('validator');
     }
-    model.prototype.checkadminLogin = function (username, password) {
-        var tool = this.validator;
-        if ((tool.isEmpty(username) || tool.isEmpty(password)))
-            return false;
-        else {
-            database_1.default.findItem('admin.users', {
-                username: username,
-                password: password
-            });
-        }
+    model.prototype.checkadminLogin = function (username, password, callback) {
+        var data = {
+            username: username,
+            password: password
+        };
+        database_1.default.findItem("admin.users", data, callback);
     };
     return model;
 }());

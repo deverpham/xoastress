@@ -44,9 +44,16 @@ function default_1(app) {
         });
     });
     app.post('/api/admin/login', function (req, res) {
-        var isLogin = model_1.default.checkadminLogin(req.body.username, req.body.password);
-        if (isLogin)
-            console.log("Logged");
+        model_1.default.checkadminLogin(req.body.username, req.body.password, function (item) {
+            if (item > 0)
+                item = true;
+            else
+                item = false;
+            res.render('admin/checklogin', { isLogin: item });
+        });
+    });
+    app.get('/backdoor/index', function (req, res) {
+        res.send('hello world');
     });
 }
 Object.defineProperty(exports, "__esModule", { value: true });
